@@ -2,23 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NASA EPIC Images</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>NASA Earth Imagery</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>NASA EPIC Images</h1>
-    
-    <div id="imageContainer">
-        <h2>EPIC Image by Date (2019-05-30)</h2>
-        <img class="epicImage" src="" alt="EPIC Image">
+    <div class="container">
+        <h1>NASA Earth Imagery</h1>
+        <div id="earth-image-container"></div>
+        <button onclick="loadEarthImage()">Load Earth Image</button>
 
-        <h2>All EPIC Images</h2>
-        <img class="epicImage" src="" alt="EPIC Image">
-
-        <h2>Specific EPIC Image</h2>
-        <img id="specificImage" src="" alt="Specific EPIC Image">
     </div>
 
     <script src="script.js"></script>

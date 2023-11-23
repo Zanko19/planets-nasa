@@ -1,33 +1,24 @@
-document.addEventListener("DOMContentLoaded", function() {
-    // Replace 'YOUR_API_KEY' with your actual API key
+async function loadEarthImage() {
     const apiKey = "yaLsNpescjEZrNuFt4af7gQKqG0IPqPlUcjYHHn7";
+    const apiUrl = `https://api.nasa.gov/planetary/earth/imagery?api_key=${apiKey}`;
 
-    // Function to fetch and display an EPIC image
-    function fetchAndDisplayImage(apiUrl) {
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                // Get the first image data
-                const image = data[0];
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        console.log(data); // Ajoutez cette ligne
 
-                // Construct the image URL
-                const imageUrl = "https://epic.gsfc.nasa.gov/archive/natural/${image.date.slice(0, 4)}/${image.date.slice(5, 7)}/${image.date.slice(8, 10)}/png/${image.image}.png";
+        const earthImageContainer = document.getElementById('earth-image-container');
 
-                // Update the image source
-                document.getElementById("epicImage").src = imageUrl;
-            })
-            .catch(error => console.error("Error fetching data:", error));
+        if (data.url) {
+            const imageUrl = data.url;
+            earthImageContainer.innerHTML = `<img src="${imageUrl}" alt="NASA Earth Image">`;
+        } else {
+            alert("No Earth image available.");
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        alert(`Error fetching data. See the console for details. ${error.message}`);
     }
-
-    // Fetch and display EPIC image by specific date
-    const dateApiUrl = `https://api.nasa.gov/EPIC/api/natural/date/2019-05-30?api_key=${apiKey}`;
-    fetchAndDisplayImage(dateApiUrl);
-
-    // Fetch and display all EPIC images
-    const allApiUrl = `https://api.nasa.gov/EPIC/api/natural/all?api_key=${apiKey}`;
-    fetchAndDisplayImage(allApiUrl);
-
-    // Fetch and display a specific EPIC image by URL
-    const specificImageUrl = `https://api.nasa.gov/EPIC/archive/natural/2019/05/30/png/epic_1b_20190530011359.png?api_key=${apiKey}`;
-    document.getElementById("specificImage").src = specificImageUrl;
-});
+    
+    
+}
