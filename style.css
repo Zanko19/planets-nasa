@@ -1,0 +1,14 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+#imageContainer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#epicImage {
+    max-width: 50%;
+    height: 50%;
+}
